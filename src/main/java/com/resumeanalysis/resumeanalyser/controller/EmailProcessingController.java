@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.mail.*;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.AndTerm;
@@ -32,10 +35,13 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("/email")
 public class EmailProcessingController {
+	
+	private static Logger log =LoggerFactory.getLogger(EmailProcessingController.class);
 
 	@GetMapping("/process")
     public String processEmail() {
-		System.out.println("inside the email");
+		log.info("In processing email :");
+//		System.out.println("inside the email");
         Properties properties = new Properties();
         properties.setProperty("mail.store.protocol", "imaps");
 
